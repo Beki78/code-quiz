@@ -12,9 +12,7 @@ const Option = () => {
         style={{ backgroundImage: `url(${optionbackground})` }}
       ></div>
       <div className="absolute bg-slate-900 bg-opacity-60 text-green-500 p-8 rounded-lg backdrop-blur-sm shadow-sm text-center shadow-white">
-        <h1 className="text-3xl font-bold mb-4">Your Score</h1>
-        <h1 className="text-3xl font-bold">5/10</h1>
-        <div className="flex justify-between text-3xl mt-4">
+        <div className="flex justify-between text-5xl mt-4 gap-10">
           <Link to="/game">
             <VscDebugRestart />
           </Link>

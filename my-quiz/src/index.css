@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.h1-wrap {
+  word-wrap: break-word;
+}

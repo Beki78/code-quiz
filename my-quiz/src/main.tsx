@@ -4,8 +4,8 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './Pages/Home'
 import Error from './Pages/Error'
-import Game from './Pages/Game'
 import Option from './Pages/Option'
+import Game from "./Pages/Game";
 
 
 

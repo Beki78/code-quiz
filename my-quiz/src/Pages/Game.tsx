@@ -4,12 +4,11 @@ import HashLoader from "react-spinners/HashLoader";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 const Game = (  ) => {
   const [loading, setLoading] = useState(false);
   const [questionNO, setQuestionNO] = useState(0);
-  const [data, setData] = useState([]);
-  const [choices, setChoices] = useState([]);
+  const [data, setData] = useState<any[]>([]);
+  const [choices, setChoices] = useState<any[]>([])
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [correctCount, setCorrectCount] = useState(0);
 
@@ -27,7 +26,7 @@ const Game = (  ) => {
       )
       .then((res) => {
         const questions = res.data.results;
-        const formattedChoices = questions.map((question) => {
+        const formattedChoices = questions.map((question:any) => {
           const allChoices = [
             ...question.incorrect_answers,
             question.correct_answer,
@@ -49,7 +48,7 @@ const Game = (  ) => {
       .catch((err) => console.error(err));
   }, []);
 
-  const shuffleArray = (array) => {
+  const shuffleArray = (array:any) => {
     const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -61,7 +60,7 @@ const Game = (  ) => {
     return shuffledArray;
   };
 
-  const handleButtonClick = (index) => {
+  const handleButtonClick = (index:any) => {
     if (clickedIndex === -1) {
       const updatedChoices = [...choices];
       updatedChoices[index].isSelected = true;
@@ -82,7 +81,7 @@ const Game = (  ) => {
   return (
     <>
       {loading ? (
-        <div className="h-screen flex justify-center items-center bg-slate-700">
+        <div className="h-screen m flex justify-center items-center bg-slate-700">
           <HashLoader
             className=""
             color={"#137973"}
@@ -99,13 +98,13 @@ const Game = (  ) => {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${gamebg})` }}
             ></div>
-            <div className="absolute min-w-xl max-w-3xl flex flex-col right-36 top-20">
+            <div className="absolute min-w-xl max-w-80 lg:max-w-3xl md:max-w-96  flex flex-col right-24 sm:right-36 top-20">
               <div className="bg-slate-900 bg-opacity-5 text-green-400 pt-5 pb-5 pl-8 pr-8 rounded-lg backdrop-blur-sm shadow-sm shadow-white">
                 <div
-                  className="question-container overflow-y-auto"
+                  className="question-container overflow-y-auto max-w-72 lg:max-w-3xl "
                   style={{ width: "600px", maxHeight: "300px" }}
                 >
-                  <h1 className="text-lg font-bold mb-3 ">
+                  <h1 className="text-sm md:text-[1rem] font-bold mb-3">
                     {data.length > 0 &&
                       `${questionNO + 1}. ${data[questionNO].question}`}
                   </h1>
@@ -129,7 +128,7 @@ const Game = (  ) => {
                   ))}
                   <div className="flex justify-between">
                     <h1 className="font-bold">
-                      {`${correctCount}/${questionNO + 1}`}
+                      SCORE: {`${correctCount}`}/{`${questionNO + 1}`}
                     </h1>
                     {questionNO < 9 ? (
                       <button
